@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 public class ApiExample2 {
     private static final String CLIENT_SECRETS= "client_secret.json";
@@ -80,8 +81,8 @@ public class ApiExample2 {
         YouTube youtubeService = getService();
         // Define and execute the API request
         YouTube.Videos.List request = youtubeService.videos()
-                .list("snippet,contentDetails,statistics");
-        VideoListResponse response = request.setId("Ks-_Mh1QhMc").execute();
+                .list(Collections.singletonList("snippet,contentDetails,statistics"));
+        VideoListResponse response = request.setId(Collections.singletonList("Ks-_Mh1QhMc")).execute();
         System.out.println(response);
     }
 }
