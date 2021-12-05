@@ -14,8 +14,8 @@ public class VacflixbackendApplication {
         SpringApplication.run(VacflixbackendApplication.class, args);
     }
     @GetMapping("/restcall")
-    public String testcall(@RequestParam(value = "value1", defaultValue = "default value") String randomVar){
-        return String.format("sup %s", randomVar);
+    public String testcall(@RequestParam(value = "value1", defaultValue = "World") String randomVar){
+        return String.format("Hello %s", randomVar);
     }
 
 }
