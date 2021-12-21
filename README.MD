@@ -2,6 +2,11 @@
 Crawl YouTube's channel playlists and the playlist videos to store them in our db.  
 Then interact with the data through a RESTful API
 
+## Instructions
+Get YouTube v3 API  
+Execute the db.sql from /sql
+
+
 ###endpoints @ api/YouTubeController:
 
 crawl playlist from a channel id  
