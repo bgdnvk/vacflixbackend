@@ -20,6 +20,28 @@ import java.util.Collections;
 
 @Service
 public class YouTubeApiService {
+    //TODO: check youtube service
+    //from official google docs finally
+//    // You need to set this value for your code to compile.
+//    // For example: ... DEVELOPER_KEY = "YOUR ACTUAL KEY";
+//    private static final String DEVELOPER_KEY = "YOUR_API_KEY";
+//
+//    private static final String APPLICATION_NAME = "API code samples";
+//    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+//
+//    /**
+//     * Build and return an authorized API client service.
+//     *
+//     * @return an authorized API client service
+//     * @throws GeneralSecurityException, IOException
+//     */
+//    public static YouTube getService() throws GeneralSecurityException, IOException {
+//        final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+//        return new YouTube.Builder(httpTransport, JSON_FACTORY, null)
+//                .setApplicationName(APPLICATION_NAME)
+//                .build();
+//    }
+
     @Autowired
     private Environment env;
 
@@ -29,7 +51,6 @@ public class YouTubeApiService {
 
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
-    private long count = 0;
 
     String playListJSON;
 
@@ -77,7 +98,24 @@ public class YouTubeApiService {
 
             YouTube.PlaylistItems.List request = youtube.playlistItems()
                     .list(Collections.singletonList("contentDetails"));
-            PlaylistItemListResponse response = request.setId(Collections.singletonList(id)).execute();
+//            PlaylistItemListResponse response = request.setId(Collections.singletonList(id)).execute();
+
+            PlaylistItemListResponse response = request
+                    .setPlaylistId(id)
+                    .execute();
+
+
+//            YouTube youtubeService = getService();
+//            // Define and execute the API request
+//            YouTube.PlaylistItems.List request = youtubeService.playlistItems()
+//                    .list("snippet");
+//            PlaylistItemListResponse response = request.setKey(DEVELOPER_KEY)
+//                    .setPlaylistId("PL0vfts4VzfNigohKr5sPrkcPFpuZmTe2C")
+//                    .execute();
+//            System.out.println(response);
+
+            System.out.println(response);
+
             System.out.println(response);
             playListJSON = response.toString();
 
