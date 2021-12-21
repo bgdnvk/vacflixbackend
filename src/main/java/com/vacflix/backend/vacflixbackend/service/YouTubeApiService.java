@@ -36,14 +36,6 @@ public class YouTubeApiService {
     //build the youtube auth from the api key
     public String getYoutubePlaylist(String id){
         try {
-
-//            YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
-//                public void initialize(HttpRequest request) throws IOException {
-//                }
-//            }).setApplicationName("YoutubeVideoInfo")
-//                    .setYouTubeRequestInitializer(new YouTubeRequestInitializer(env.getProperty("youtube.apikey"))).build();
-
-            //get the authorization through the api
             ApiAuth service = new ApiAuth(env);
             YouTube youtube = service.getYoutube();
 
