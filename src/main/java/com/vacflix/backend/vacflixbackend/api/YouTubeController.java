@@ -16,6 +16,7 @@ import com.vacflix.backend.vacflixbackend.service.YouTubeApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,14 +32,14 @@ public class YouTubeController {
     YouTubeApiService youTubeApiService;
 
     //use the playlist ID in the call to get the json from youtube
-    @GetMapping(path = "/playlist/{id}")
+    @GetMapping(path = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String playlist(@PathVariable String id){
         //UCwoAou1VZfbYfz-TysRzDCA
         return youTubeApiService.getYoutubePlaylist(id);
     }
 
     //use the playlist ID to get the items from the playlist
-    @GetMapping(path = "/playlist/items/{id}")
+    @GetMapping(path = "/playlist/items/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String playListItems(@PathVariable String id){
         return youTubeApiService.getVideosFromPlaylist(id);
     }
