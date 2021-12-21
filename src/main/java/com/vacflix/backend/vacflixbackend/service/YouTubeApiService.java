@@ -66,21 +66,32 @@ public class YouTubeApiService {
         //TODO: make a proper JSON
         return playListJSON;
     }
-    //TODO: check exceptions2
-    public String getVideosFromPlaylist(String id) throws IOException {
+
+    public String getVideosFromPlaylist(String id) {
 
         //TODO: refactor auth serv
         //get the authorization through the api
-        ApiAuth service = new ApiAuth(env);
-        YouTube youtube = service.getYoutube();
+        try{
+            ApiAuth service = new ApiAuth(env);
+            YouTube youtube = service.getYoutube();
 
-        YouTube.PlaylistItems.List request = youtube.playlistItems()
-                .list(Collections.singletonList("contentDetails"));
-        PlaylistItemListResponse response = request.setId(Collections.singletonList(id)).execute();
-        System.out.println(response);
-        playListJSON = response.toString();
+            YouTube.PlaylistItems.List request = youtube.playlistItems()
+                    .list(Collections.singletonList("contentDetails"));
+            PlaylistItemListResponse response = request.setId(Collections.singletonList(id)).execute();
+            System.out.println(response);
+            playListJSON = response.toString();
 
-        //PL7jsIYDyTYItwUnGLWLYPGsPScPetNT3t
+            //PL7jsIYDyTYItwUnGLWLYPGsPScPetNT3t
+        } catch (
+                GoogleJsonResponseException e) {
+            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                    + e.getDetails().getMessage());
+        } catch (IOException e) {
+            System.err.println("There was an IO error: " + e.getCause() + " : " + e.getMessage());
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+
 
         return playListJSON;
     }

@@ -37,9 +37,9 @@ public class YouTubeController {
         return youTubeApiService.getYoutubePlaylist(id);
     }
 
-    //TODO: check exceptions
+    //use the playlist ID to get the items from the playlist
     @GetMapping(path = "/playlist/items/{id}")
-    public String playListItems(@PathVariable String id) throws IOException {
+    public String playListItems(@PathVariable String id){
         return youTubeApiService.getVideosFromPlaylist(id);
     }
 
