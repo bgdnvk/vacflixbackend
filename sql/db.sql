@@ -20,7 +20,7 @@ USE `remote_api_manager`;
 
 DROP TABLE IF EXISTS `youtube_video_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `youtube_video_info` (
                                       `id` int(11) NOT NULL AUTO_INCREMENT,
                                       `created` datetime DEFAULT NULL,
