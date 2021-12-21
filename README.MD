@@ -16,6 +16,8 @@ playlist/{id}
 get video items from our db  
 playlist/items/{id}
 
+TODO: update, delete, etc
+
 ###services/beans @ service/..  
 ApiAuth: connect to the youtube's api  
 YouTubeApiService: service methods that YouTubeController uses
