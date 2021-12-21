@@ -74,9 +74,10 @@ public class YouTubeApiService {
         //TODO: make a proper JSON
         return playListJSON;
     }
-
+    //TODO: check exceptions2
     public String getVideosFromPlaylist(String id) throws IOException {
 
+        //TODO: refactor auth serv
         //get the authorization through the api
         ApiAuth service = new ApiAuth(env);
         YouTube youtube = service.getYoutube();
