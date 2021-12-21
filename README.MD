@@ -3,7 +3,8 @@ Crawl YouTube's channel playlists and the playlist videos to store them in our d
 Then interact with the data through a RESTful API
 
 ## Instructions
-Get YouTube v3 API  
+Get YouTube v3 API and save it in resources/application.properties    
+youtube.apikey=your_api_key  
 Execute the db.sql from /sql
 
 
