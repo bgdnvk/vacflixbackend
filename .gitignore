@@ -34,3 +34,4 @@ build/
 /src/main/resources/client_secret.json
 ## api key
 /src/main/resources/application.properties
+application.properties
