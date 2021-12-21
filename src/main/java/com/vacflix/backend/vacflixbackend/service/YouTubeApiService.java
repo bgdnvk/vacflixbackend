@@ -28,33 +28,27 @@ public class YouTubeApiService {
 
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
-    private YouTube youtube;
-
     private long count = 0;
 
     String playListJSON;
 
+    //build the youtube auth from the api key
     public String getYoutubePlaylist(String id){
         try {
 
-            youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
+            YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
             }).setApplicationName("YoutubeVideoInfo")
                     .setYouTubeRequestInitializer(new YouTubeRequestInitializer(env.getProperty("youtube.apikey"))).build();
 
-//            YouTube.Search.List search = youtube.search().list(Collections.singletonList("id,snippet"));
-//
-//
-//            search.setQ(queryTerm);
-//            search.setType(Collections.singletonList("video"));
-//            search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
             YouTube.Playlists.List request = youtube.playlists()
                     .list(Collections.singletonList("snippet,contentDetails"));
             PlaylistListResponse response = request.setChannelId(id)
                     .setMaxResults(25L)
                     .execute();
             System.out.println(response);
+            System.out.println(response.getClass());
 
             playListJSON = response.toString();
 
