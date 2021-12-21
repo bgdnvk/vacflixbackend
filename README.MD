@@ -8,7 +8,7 @@ youtube.apikey=your_api_key
 Execute the db.sql from /sql
 
 
-###endpoints @ api/YouTubeController:
+### endpoints @ api/YouTubeController:
 
 crawl playlist from a channel id  
 crawl/playlist/{id}
@@ -24,6 +24,6 @@ playlist/items/{id}
 
 TODO: update, delete, etc
 
-###services/beans @ service/..  
+### services/beans @ service/..  
 ApiAuth: connect to the youtube's api  
 YouTubeApiService: service methods that YouTubeController uses
