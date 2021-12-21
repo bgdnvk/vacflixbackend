@@ -31,16 +31,31 @@ public class YouTubeController {
     @Autowired
     YouTubeApiService youTubeApiService;
 
-    //use the playlist ID in the call to get the json from youtube
-    @GetMapping(path = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    //TODO: save
+    //use the playlist ID in the call to SAVE the playlist to the db
+    @GetMapping(path = "/crawl/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String playlist(@PathVariable String id){
         //UCwoAou1VZfbYfz-TysRzDCA
         return youTubeApiService.getYoutubePlaylist(id);
     }
 
-    //use the playlist ID to get the items from the playlist
-    @GetMapping(path = "/playlist/items/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    //TODO: save
+    //use the playlist ID in the call to SAVE the playlist videos to the db
+    @GetMapping(path = "/crawl/playlist/items/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String playListItems(@PathVariable String id){
+        return youTubeApiService.getVideosFromPlaylist(id);
+    }
+
+    //use the playlist ID in the call to get the json of the playlist from our db
+    @GetMapping(path = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getPlayList(@PathVariable String id){
+        //UCwoAou1VZfbYfz-TysRzDCA
+        return youTubeApiService.getYoutubePlaylist(id);
+    }
+
+    //use the playlist ID to get the json items from the playlist in our db
+    @GetMapping(path = "/playlist/items/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getPlayListItems(@PathVariable String id){
         return youTubeApiService.getVideosFromPlaylist(id);
     }
 
