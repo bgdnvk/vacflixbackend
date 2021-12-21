@@ -1,4 +1,8 @@
-endpoints @ api/YouTubeController:
+## VacFlixBackend
+Crawl YouTube's channel playlists and the playlist videos to store them in our db.  
+Then interact with the data through a RESTful API
+
+###endpoints @ api/YouTubeController:
 
 crawl playlist from a channel id  
 crawl/playlist/{id}
@@ -12,6 +16,6 @@ playlist/{id}
 get video items from our db  
 playlist/items/{id}
 
-services/beans @ service/..  
+###services/beans @ service/..  
 ApiAuth: connect to the youtube's api  
 YouTubeApiService: service methods that YouTubeController uses
