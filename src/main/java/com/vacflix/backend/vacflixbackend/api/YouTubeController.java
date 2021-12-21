@@ -46,6 +46,8 @@ public class YouTubeController {
         return youTubeApiService.getVideosFromPlaylist(id);
     }
 
+    //getters
+
     //use the playlist ID in the call to get the json of the playlist from our db
     @GetMapping(path = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getPlayList(@PathVariable String id){
@@ -57,6 +59,12 @@ public class YouTubeController {
     @GetMapping(path = "/playlist/items/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getPlayListItems(@PathVariable String id){
         return youTubeApiService.getVideosFromPlaylist(id);
+    }
+
+    //add single video id, mostly for testing purposes
+    @GetMapping(path = "/video/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getVideoById(@PathVariable String id){
+        return youTubeApiService.getVideo(id);
     }
 
 

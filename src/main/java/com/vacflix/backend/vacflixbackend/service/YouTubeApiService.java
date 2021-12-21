@@ -1,16 +1,14 @@
 package com.vacflix.backend.vacflixbackend.service;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.YouTubeRequestInitializer;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
+import com.google.api.services.youtube.model.VideoListResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -52,7 +50,7 @@ public class YouTubeApiService {
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
 
-    String playListJSON;
+    String stringResponse;
 
     //build the youtube auth from the api key
     public String getYoutubePlaylist(String id){
@@ -70,7 +68,7 @@ public class YouTubeApiService {
             System.out.println(response.getClass());
             //return the playlist
             //TODO: check json here
-            playListJSON = response.toString();
+            stringResponse = response.toString();
 
             //junta andalucia canal
             //UC_x5XG1OV2P6uZZ5FSM9Ttw
@@ -85,7 +83,7 @@ public class YouTubeApiService {
             t.printStackTrace();
         }
         //TODO: make a proper JSON
-        return playListJSON;
+        return stringResponse;
     }
 
     public String getVideosFromPlaylist(String id) {
@@ -117,7 +115,7 @@ public class YouTubeApiService {
             System.out.println(response);
 
             System.out.println(response);
-            playListJSON = response.toString();
+            stringResponse = response.toString();
 
             //PL7jsIYDyTYItwUnGLWLYPGsPScPetNT3t
         } catch (
@@ -131,6 +129,23 @@ public class YouTubeApiService {
         }
 
 
-        return playListJSON;
+        return stringResponse;
+    }
+
+    public String getVideo(String id){
+        try{
+            ApiAuth service = new ApiAuth(env);
+            YouTube youtube = service.getYoutube();
+
+            YouTube.Videos.List request = youtube.videos()
+                    .list(Collections.singletonList("snippet,contentDetails,statistics"));
+            VideoListResponse response = request.setId(Collections.singletonList(id)).execute();
+            System.out.println(response);
+
+            stringResponse = response.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringResponse;
     }
 }
