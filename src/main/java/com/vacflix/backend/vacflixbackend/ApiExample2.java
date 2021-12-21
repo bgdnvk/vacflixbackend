@@ -1,6 +1,4 @@
-package com.vacflix.backend.vacflixbackend;
-
-/**
+package com.vacflix.backend.vacflixbackend; /**
  * Sample Java code for youtube.playlists.list
  * See instructions for running these code samples locally:
  * https://developers.google.com/explorer-help/guides/code_samples#java
@@ -15,7 +13,7 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.json.gson.GsonFactory;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.PlaylistListResponse;
@@ -28,13 +26,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
-public class ApiExample {
-    private static final String CLIENT_SECRETS= "client_secret.json";
+public class ApiExample2 {
+    private static final String CLIENT_SECRETS= "/client_secret.json";
     private static final Collection<String> SCOPES =
             Arrays.asList("https://www.googleapis.com/auth/youtube.readonly");
 
     private static final String APPLICATION_NAME = "API code samples";
-    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    //https://stackoverflow.com/questions/66249053/com-google-api-client-json-jackson2-jacksonfactory-is-deprecated-what-are-my
+//    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+
 
     /**
      * Create an authorized Credential object.
@@ -44,7 +45,10 @@ public class ApiExample {
      */
     public static Credential authorize(final NetHttpTransport httpTransport) throws IOException {
         // Load client secrets.
-        InputStream in = ApiExample.class.getResourceAsStream(CLIENT_SECRETS);
+        InputStream in = ApiExample2.class.getResourceAsStream(CLIENT_SECRETS);
+        //https://stackoverflow.com/questions/16570523/getresourceasstream-returns-null
+//        assert in != null;
+//        System.out.println(in);
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
         // Build flow and trigger user authorization request.
@@ -81,8 +85,10 @@ public class ApiExample {
         YouTube youtubeService = getService();
         // Define and execute the API request
         YouTube.Playlists.List request = youtubeService.playlists()
-                .list(Collections.singletonList("snippet"));
-        PlaylistListResponse response = request.setChannelId("UCwoAou1VZfbYfz-TysRzDCA").execute();
+                .list(Collections.singletonList("snippet,contentDetails"));
+        PlaylistListResponse response = request.setChannelId("UC_x5XG1OV2P6uZZ5FSM9Ttw")
+                .setMaxResults(25L)
+                .execute();
         System.out.println(response);
     }
 }
