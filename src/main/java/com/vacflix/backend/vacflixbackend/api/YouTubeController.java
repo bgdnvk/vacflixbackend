@@ -30,6 +30,7 @@ public class YouTubeController {
     @Autowired
     YouTubeApiService youTubeApiService;
 
+    //use the playlist ID in the call to get the json from youtube
     @GetMapping(path = "/channel/playlist/{id}")
     public String playlist(@PathVariable String id){
         //UCwoAou1VZfbYfz-TysRzDCA

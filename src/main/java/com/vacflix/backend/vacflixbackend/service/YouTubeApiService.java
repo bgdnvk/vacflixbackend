@@ -36,11 +36,14 @@ public class YouTubeApiService {
     public String getYoutubePlaylist(String id){
         try {
 
-            YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
-                public void initialize(HttpRequest request) throws IOException {
-                }
-            }).setApplicationName("YoutubeVideoInfo")
-                    .setYouTubeRequestInitializer(new YouTubeRequestInitializer(env.getProperty("youtube.apikey"))).build();
+//            YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
+//                public void initialize(HttpRequest request) throws IOException {
+//                }
+//            }).setApplicationName("YoutubeVideoInfo")
+//                    .setYouTubeRequestInitializer(new YouTubeRequestInitializer(env.getProperty("youtube.apikey"))).build();
+            ApiAuth service = new ApiAuth(env);
+            YouTube youtube = service.getYoutube();
+
 
             YouTube.Playlists.List request = youtube.playlists()
                     .list(Collections.singletonList("snippet,contentDetails"));
