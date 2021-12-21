@@ -9,6 +9,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeRequestInitializer;
+import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -41,10 +42,12 @@ public class YouTubeApiService {
 //                }
 //            }).setApplicationName("YoutubeVideoInfo")
 //                    .setYouTubeRequestInitializer(new YouTubeRequestInitializer(env.getProperty("youtube.apikey"))).build();
+
+            //get the authorization through the api
             ApiAuth service = new ApiAuth(env);
             YouTube youtube = service.getYoutube();
 
-
+            //methods to get the playlists
             YouTube.Playlists.List request = youtube.playlists()
                     .list(Collections.singletonList("snippet,contentDetails"));
             PlaylistListResponse response = request.setChannelId(id)
@@ -52,9 +55,11 @@ public class YouTubeApiService {
                     .execute();
             System.out.println(response);
             System.out.println(response.getClass());
-
+            //return the playlist
+            //TODO: check json here
             playListJSON = response.toString();
 
+            //junta andalucia canal
             //UC_x5XG1OV2P6uZZ5FSM9Ttw
 
         } catch (
@@ -67,6 +72,23 @@ public class YouTubeApiService {
             t.printStackTrace();
         }
         //TODO: make a proper JSON
+        return playListJSON;
+    }
+
+    public String getVideosFromPlaylist(String id) throws IOException {
+
+        //get the authorization through the api
+        ApiAuth service = new ApiAuth(env);
+        YouTube youtube = service.getYoutube();
+
+        YouTube.PlaylistItems.List request = youtube.playlistItems()
+                .list(Collections.singletonList("contentDetails"));
+        PlaylistItemListResponse response = request.setId(Collections.singletonList(id)).execute();
+        System.out.println(response);
+        playListJSON = response.toString();
+
+        //PL7jsIYDyTYItwUnGLWLYPGsPScPetNT3t
+
         return playListJSON;
     }
 }

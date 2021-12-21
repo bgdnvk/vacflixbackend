@@ -31,10 +31,15 @@ public class YouTubeController {
     YouTubeApiService youTubeApiService;
 
     //use the playlist ID in the call to get the json from youtube
-    @GetMapping(path = "/channel/playlist/{id}")
+    @GetMapping(path = "/playlist/{id}")
     public String playlist(@PathVariable String id){
         //UCwoAou1VZfbYfz-TysRzDCA
         return youTubeApiService.getYoutubePlaylist(id);
+    }
+
+    @GetMapping(path = "/playlist/items/{id}")
+    public String playListItems(@PathVariable String id) throws IOException {
+        return youTubeApiService.getVideosFromPlaylist(id);
     }
 
 
