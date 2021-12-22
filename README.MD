@@ -70,3 +70,5 @@ rest are beans and interfaces for easier modification
   
 ### DB example:
 ![img.png](img.png)
+### JSON return example:
+![img_1.png](img_1.png)
