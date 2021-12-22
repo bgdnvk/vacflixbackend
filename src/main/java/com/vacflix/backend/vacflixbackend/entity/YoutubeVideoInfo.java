@@ -46,7 +46,7 @@ public class YoutubeVideoInfo extends BaseEntity{
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_id",referencedColumnName = "channel_id")
-    private YouTubeChannelInfo channelInfo;
+    private YoutubeChannelInfo channelInfo;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "video_stat_id",referencedColumnName = "video_id")

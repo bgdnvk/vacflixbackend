@@ -1,5 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `vacflix` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `remote_api_manager`;
+USE `vacflix`;
 
 -- Host: localhost    Database: vacflix
 

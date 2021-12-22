@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @Entity(name = "youtube_channel")
 @Data
 @EqualsAndHashCode(callSuper=true)
-public class YouTubeChannelInfo extends BaseEntity{
+public class YoutubeChannelInfo extends BaseEntity{
     @Column(name = "channel_id")
     private String channelId;
     @Column(name = "name")

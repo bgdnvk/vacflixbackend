@@ -27,3 +27,7 @@ TODO: update, delete, etc
 ### services/beans @ service/..  
 ApiAuth: connect to the youtube's api  
 YouTubeApiService: service methods that YouTubeController uses
+
+### TODOs
+- spread service layer into better/more microservices
+- dockerize
