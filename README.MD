@@ -29,6 +29,10 @@ Execute the db.sql from /sql/db.sql
 
 
 ### endpoints @ api/YouTubeController:
+#### crawlers
+
+crawl search results and save them to the db  
+crawl/{keyword}/{pageToCrawl}
 
 crawl playlist from a channel id  
 crawl/playlist/{id}
@@ -39,6 +43,7 @@ crawl/playlist/items/{id}
 crawl a single video id
 crawl/video/{id}
 
+#### proxy for JSON returns
 get playlist id from our db  
 playlist/{id}
 
