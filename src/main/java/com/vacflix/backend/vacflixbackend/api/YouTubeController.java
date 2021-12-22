@@ -12,6 +12,7 @@ import com.google.api.services.youtube.YouTubeRequestInitializer;
 import com.google.api.services.youtube.model.PlaylistListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+import com.vacflix.backend.vacflixbackend.service.PageCrawler;
 import com.vacflix.backend.vacflixbackend.service.YouTubeApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +29,13 @@ import java.util.List;
 
 @RestController
 public class YouTubeController {
+    //most of the methods are here
     @Autowired
     YouTubeApiService youTubeApiService;
+
+    //get the crawler bean
+    @Autowired
+    PageCrawler pageCrawler;
 
     //TODO: save
     //use the playlist ID in the call to SAVE the playlist to the db
@@ -72,6 +78,13 @@ public class YouTubeController {
     @GetMapping(path = "/search/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getSearchQuery(@PathVariable String query) throws IOException {
         return youTubeApiService.getVideosFromSearch(query);
+    }
+
+    // TODO: refactor the crawler
+    //first crawl test into db
+    @GetMapping(value = "crawl/{keyword}/{pageToCrawl}")
+    public String crawlVideo(@PathVariable String keyword, @PathVariable long pageToCrawl) {
+        return pageCrawler.crawlYoutubeVideoInfo(keyword,pageToCrawl);
     }
 
 
