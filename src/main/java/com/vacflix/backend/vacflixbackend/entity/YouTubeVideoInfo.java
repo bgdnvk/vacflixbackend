@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity(name = "youtube_video_info")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class YoutubeVideoInfo extends BaseEntity{
+public class YouTubeVideoInfo extends BaseEntity{
     @Column(name = "video_id")
     private String videoId;
 

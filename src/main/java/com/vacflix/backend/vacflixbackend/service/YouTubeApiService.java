@@ -6,15 +6,16 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.model.PlaylistItemListResponse;
-import com.google.api.services.youtube.model.PlaylistListResponse;
-import com.google.api.services.youtube.model.VideoListResponse;
+import com.google.api.services.youtube.model.*;
+import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
+import com.vacflix.backend.vacflixbackend.entity.YoutubeChannelInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Date;
 
 @Service
 public class YouTubeApiService {
@@ -48,6 +49,13 @@ public class YouTubeApiService {
     public static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
+
+    //BEANS/services
+    @Autowired
+    YoutubeVideoInfoService youtubeVideoInfoService;
+
+    @Autowired
+    YoutubeChannelService youtubeChannelService;
 
 
     String stringResponse;
@@ -147,5 +155,62 @@ public class YouTubeApiService {
             e.printStackTrace();
         }
         return stringResponse;
+    }
+
+    //save your video to the db
+    private void saveVideo(SearchResult searchResult) throws IOException {
+
+        SearchResult singleVideo = searchResult;
+        YouTubeVideoInfo youTubeVideoInfo = youtubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
+
+        if (youTubeVideoInfo == null) {
+            youTubeVideoInfo = new YouTubeVideoInfo();
+            ResourceId rId = singleVideo.getId();
+            //TODO: query could be useful for global search
+//            youTubeVideoInfo.setKeyword(query);
+            youTubeVideoInfo.setDescription(singleVideo.getSnippet().getDescription());
+            youTubeVideoInfo.setPublishedDate(new Date(singleVideo.getSnippet().getPublishedAt().getValue()));
+
+            if (rId.getKind().equals("youtube#video")) {
+                Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
+                youTubeVideoInfo.setVideoId(rId.getVideoId());
+                youTubeVideoInfo.setTitle(singleVideo.getSnippet().getTitle());
+                youTubeVideoInfo.setThumbnailUrl(thumbnail.getUrl());
+
+                youTubeVideoInfo.setChannelInfo(getChannelDetailsById(singleVideo.getSnippet().getChannelId()));
+// TODO: missing method
+//                youTubeVideoInfo.setVideoStatistics(getVideosStatistics(rId.getVideoId()));
+            }
+
+            youtubeVideoInfoService.save(youTubeVideoInfo);
+        } else {
+            System.out.println("dupe");
+        }
+    }
+
+    private YoutubeChannelInfo getChannelDetailsById(String channelId) throws IOException {
+        //TODO: refactor service
+        ApiAuth service = new ApiAuth(env);
+        YouTube youtube = service.getYoutube();
+
+        YouTube.Channels.List channels = youtube.channels().list(Collections.singletonList("snippet, statistics"));
+
+        YoutubeChannelInfo youtubeChannelInfo = new YoutubeChannelInfo();
+        youtubeChannelInfo.setChannelId(channelId);
+        channels.setId(Collections.singletonList(channelId));
+        ChannelListResponse channelResponse = channels.execute();
+        Channel c = channelResponse.getItems().get(0);
+
+        youtubeChannelInfo.setName(c.getSnippet().getTitle());
+        youtubeChannelInfo.setSubscriptionCount(c.getStatistics().getSubscriberCount().longValue());
+
+        YoutubeChannelInfo channelInfo = youtubeChannelService.getByChannelId(channelId);
+
+        if (channelInfo == null) {
+            youtubeChannelService.save(youtubeChannelInfo);
+        } else {
+            return channelInfo;
+        }
+        return youtubeChannelInfo;
     }
 }

@@ -74,7 +74,7 @@ public class ApiAuth {
             return new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
-            }).setApplicationName("YoutubeVideoInfo")
+            }).setApplicationName("YouTubeVideoInfo")
                     .setYouTubeRequestInitializer(new YouTubeRequestInitializer(this.env.getProperty("youtube.apikey"))).build();
         }
 
