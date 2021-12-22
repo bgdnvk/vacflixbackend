@@ -14,9 +14,31 @@ USE `vacflix`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `crawling_info`
+--
+
+DROP TABLE IF EXISTS `crawling_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `crawling_info` (
+                                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                                 `search_key` varchar(45) NOT NULL,
+                                 `current_page_token` varchar(45) DEFAULT NULL,
+                                 `next_page_token` varchar(45) DEFAULT NULL,
+                                 `created` datetime DEFAULT NULL,
+                                 `updated` datetime DEFAULT NULL,
+                                 `created_by` varchar(45) DEFAULT NULL,
+                                 `updated_by` varchar(45) DEFAULT NULL,
+                                 `total_count` int(11) DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 UNIQUE KEY `search_key_UNIQUE` (`search_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 DROP TABLE IF EXISTS `youtube_channel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `youtube_channel` (
                                    `id` int(11) NOT NULL AUTO_INCREMENT,
                                    `created` datetime DEFAULT NULL,
