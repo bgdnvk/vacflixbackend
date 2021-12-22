@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class YouTubeApiService {
@@ -54,8 +55,10 @@ public class YouTubeApiService {
     @Autowired
     YoutubeVideoInfoService youtubeVideoInfoService;
 
+
     @Autowired
     YoutubeChannelService youtubeChannelService;
+
 
 
     String stringResponse;
@@ -150,10 +153,17 @@ public class YouTubeApiService {
             VideoListResponse response = request.setId(Collections.singletonList(id)).execute();
             System.out.println(response);
 
+            //trying to get searchResult
+            List<Video> results = response.getItems();
+            System.out.println("INSIDE GETVIDEO");
+            System.out.println(results);
+
             stringResponse = response.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         return stringResponse;
     }
 
@@ -187,6 +197,8 @@ public class YouTubeApiService {
             System.out.println("dupe");
         }
     }
+
+
 
     private YoutubeChannelInfo getChannelDetailsById(String channelId) throws IOException {
         //TODO: refactor service

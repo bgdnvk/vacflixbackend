@@ -1,7 +1,7 @@
 package com.vacflix.backend.vacflixbackend.service;
 
 import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
-import com.vacflix.backend.vacflixbackend.repository.YoutubeVideoInfoRepository;
+import com.vacflix.backend.vacflixbackend.repository.YouTubeVideoInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +9,10 @@ import java.util.List;
 
 @Service
 public class YoutubeInfoServiceBean implements YoutubeVideoInfoService{
+    //couldn't find this bean?
     @Autowired
-    private YoutubeVideoInfoRepository youtubeVideoInfoRepository;
+    private YouTubeVideoInfoRepository youtubeVideoInfoRepository;
+
 
     @Override
     public void save(YouTubeVideoInfo videoInfo) {

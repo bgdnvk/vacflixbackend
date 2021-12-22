@@ -12,6 +12,10 @@ public class YoutubeChannelServiceBean implements YoutubeChannelService{
     @Autowired
     YoutubeChannelRepository youtubeChannelRepository;
 
+//    //error? huh
+//    @Autowired
+//    YouTubeVideoInfoRepository youtubeVideoInfoRepository;
+
 
     @Override
     public void save(YoutubeChannelInfo channelInfo) {
