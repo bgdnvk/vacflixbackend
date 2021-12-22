@@ -4,8 +4,8 @@ Then interact with the data through a RESTful API.
 
 ## Tech Stack  
 - Java 17
-- Spring Boot
-- MySql
+- Spring Boot 2.5
+- MySQL
 - Tools: IntelliJ, Maven
 
 ## Instructions
