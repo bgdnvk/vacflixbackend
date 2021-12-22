@@ -67,3 +67,6 @@ rest are beans and interfaces for easier modification
 - spread service layer into better/more microservices (almost done)
 - dockerize
 - cleanup
+  
+### DB example:
+![img.png](img.png)
