@@ -9,10 +9,9 @@ import java.util.List;
 
 @Service
 public class YoutubeInfoServiceBean implements YoutubeVideoInfoService{
-    //couldn't find this bean?
+
     @Autowired
     private YouTubeVideoInfoRepository youtubeVideoInfoRepository;
-
 
     @Override
     public void save(YouTubeVideoInfo videoInfo) {

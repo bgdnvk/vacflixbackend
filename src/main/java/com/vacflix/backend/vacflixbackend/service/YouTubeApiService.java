@@ -55,12 +55,11 @@ public class YouTubeApiService {
     @Autowired
     YoutubeVideoInfoService youtubeVideoInfoService;
 
-
     @Autowired
     YoutubeChannelService youtubeChannelService;
 
 
-
+    //assign the json response and return it here
     String stringResponse;
 
     //build the youtube auth from the api key
@@ -143,6 +142,7 @@ public class YouTubeApiService {
         return stringResponse;
     }
 
+
     public String getVideo(String id){
         try{
             ApiAuth service = new ApiAuth(env);
@@ -155,19 +155,36 @@ public class YouTubeApiService {
 
             //trying to get searchResult
             List<Video> results = response.getItems();
-            System.out.println("INSIDE GETVIDEO");
+            System.out.println("------------INSIDE GETVIDEO-------------");
+            System.out.println("list of results");
             System.out.println(results);
 
             stringResponse = response.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return stringResponse;
     }
 
+    //TODO: make proper exceptions
+    public String getVideosFromSearch(String query) throws IOException {
+
+        ApiAuth service = new ApiAuth(env);
+        YouTube youtube = service.getYoutube();
+
+        // Define and execute the API request
+        YouTube.Search.List request = youtube.search()
+                .list(Collections.singletonList("snippet"));
+        SearchListResponse response = request.setMaxResults(25L)
+                .setQ(query)
+                .execute();
+        //console log
+        System.out.println(response.toString());
+        return response.toString();
+    }
+
     //save your video to the db
+    //TODO: only for lists, not single video. Need to fix
     private void saveVideo(SearchResult searchResult) throws IOException {
 
         SearchResult singleVideo = searchResult;

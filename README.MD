@@ -33,12 +33,17 @@ playlist/items/{id}
 get single video for testing purposes
 video/{id}
 
+get videos from a search query  
+search/{query}
+
 TODO: update, delete, etc
 
-### services/beans @ service/..  
+### services/beans @ service/.. 
+**YouTubeApiService**: service methods that YouTubeController uses
 ApiAuth: connect to the youtube's api  
-YouTubeApiService: service methods that YouTubeController uses
+rest are beans and interfaces for easier modification
 
 ### TODOs
-- spread service layer into better/more microservices
+- spread service layer into better/more microservices (almost done)
 - dockerize
+- cleanup
