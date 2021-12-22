@@ -9,13 +9,13 @@ Then interact with the data through a RESTful API.
 - Tools: IntelliJ, Maven
 
 ## Architecture
-Endpoints are defined in api/YouTubeController. From there a call is made =>
- /service/YouTubeApiService which interacts with the defined services and the db.
-The folder /entity is to define the database and /repository is to define how
+Endpoints are defined in `/api/YouTubeController`. From there a call is made =>
+ `/service/YouTubeApiService` which interacts with the defined services and the db.
+The folder `/entity` is to define the database and `/repository` is to define how
 the objects interact with it (repositories are kind of like interfaces for DAOs).  
   
 Spring Boot works through depencendy injection. You define beans with the annotations
- @service or @component and then you can use them elsewhere with @Autowired NameOfBean.
+ `@service` or `@component` and then you can use them elsewhere with `@Autowired NameOfBean`.
 
 ## Instructions
 Get YouTube v3 API and save it in resources/application.properties    
