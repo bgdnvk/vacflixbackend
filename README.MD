@@ -1,6 +1,12 @@
 ## VacFlixBackend
-Crawl YouTube's channel playlists and the playlist videos to store them in our db.  
-Then interact with the data through a RESTful API
+Crawl YouTube's channel playlists and playlist videos to store them in our db.  
+Then interact with the data through a RESTful API.
+
+## Tech Stack  
+- Java 17
+- Spring Boot
+- MySql
+- Tools: IntelliJ, Maven
 
 ## Instructions
 Get YouTube v3 API and save it in resources/application.properties    
@@ -10,7 +16,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/vacflix
 spring.datasource.username=root
 spring.datasource.password=password  
 
-Execute the db.sql from /sql
+Execute the db.sql from /sql/db.sql
 
 
 ### endpoints @ api/YouTubeController:
