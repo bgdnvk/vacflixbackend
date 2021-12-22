@@ -21,11 +21,17 @@ crawl/playlist/{id}
 crawl video items from a playlist id  
 crawl/playlist/items/{id}
 
+crawl a single video id
+crawl/video/{id}
+
 get playlist id from our db  
 playlist/{id}
 
 get video items from our db  
 playlist/items/{id}
+
+get single video for testing purposes
+video/{id}
 
 TODO: update, delete, etc
 
