@@ -53,10 +53,10 @@ public class YouTubeApiService {
 
     //BEANS/services
     @Autowired
-    YoutubeVideoInfoService youtubeVideoInfoService;
+    IYoutubeVideoInfoService IYoutubeVideoInfoService;
 
     @Autowired
-    YoutubeChannelService youtubeChannelService;
+    IYoutubeChannelService youtubeChannelService;
 
 
     //assign the json response and return it here
@@ -142,7 +142,7 @@ public class YouTubeApiService {
         return stringResponse;
     }
 
-
+    //get a single video from passing the ID through a query
     public String getVideo(String id){
         try{
             ApiAuth service = new ApiAuth(env);
@@ -167,6 +167,8 @@ public class YouTubeApiService {
     }
 
     //TODO: make proper exceptions
+    //return a string with the search result
+    //inside the items array you have all the videos
     public String getVideosFromSearch(String query) throws IOException {
 
         ApiAuth service = new ApiAuth(env);
@@ -188,7 +190,7 @@ public class YouTubeApiService {
     private void saveVideo(SearchResult searchResult) throws IOException {
 
         SearchResult singleVideo = searchResult;
-        YouTubeVideoInfo youTubeVideoInfo = youtubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
+        YouTubeVideoInfo youTubeVideoInfo = IYoutubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
 
         if (youTubeVideoInfo == null) {
             youTubeVideoInfo = new YouTubeVideoInfo();
@@ -209,7 +211,7 @@ public class YouTubeApiService {
 //                youTubeVideoInfo.setVideoStatistics(getVideosStatistics(rId.getVideoId()));
             }
 
-            youtubeVideoInfoService.save(youTubeVideoInfo);
+            IYoutubeVideoInfoService.save(youTubeVideoInfo);
         } else {
             System.out.println("dupe");
         }

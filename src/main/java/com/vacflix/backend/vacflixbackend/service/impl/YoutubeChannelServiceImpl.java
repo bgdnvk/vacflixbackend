@@ -1,14 +1,15 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.service.impl;
 
 import com.vacflix.backend.vacflixbackend.entity.YoutubeChannelInfo;
 import com.vacflix.backend.vacflixbackend.repository.IYoutubeChannelRepository;
+import com.vacflix.backend.vacflixbackend.service.IYoutubeChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class YoutubeChannelServiceBean implements YoutubeChannelService{
+public class YoutubeChannelServiceImpl implements IYoutubeChannelService {
     @Autowired
     IYoutubeChannelRepository IYoutubeChannelRepository;
 

@@ -1,14 +1,15 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.service.impl;
 
 import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
 import com.vacflix.backend.vacflixbackend.repository.IYouTubeVideoInfoRepository;
+import com.vacflix.backend.vacflixbackend.service.IYoutubeVideoInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class YoutubeInfoServiceBean implements YoutubeVideoInfoService{
+public class YoutubeVideoInfoServiceImpl implements IYoutubeVideoInfoService {
 
     @Autowired
     private IYouTubeVideoInfoRepository youtubeVideoInfoRepositoryI;

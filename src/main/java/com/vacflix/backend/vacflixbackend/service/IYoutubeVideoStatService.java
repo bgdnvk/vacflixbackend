@@ -5,7 +5,7 @@ import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
 
 import java.util.List;
 
-public interface YoutubeVideoStatService {
+public interface IYoutubeVideoStatService {
     void save(YoutubeVideoStatistics videoStatistics);
     void update(YoutubeVideoStatistics videoInfo);
     YoutubeVideoStatistics get(long id);

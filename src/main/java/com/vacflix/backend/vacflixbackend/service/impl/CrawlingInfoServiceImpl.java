@@ -1,13 +1,14 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.service.impl;
 
 import com.vacflix.backend.vacflixbackend.entity.CrawlingInfo;
 import com.vacflix.backend.vacflixbackend.repository.ICrawlingInfoRepository;
+import com.vacflix.backend.vacflixbackend.service.ICrawlingInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class CrawlingInfoBean implements CrawlingInfoService{
+public class CrawlingInfoServiceImpl implements ICrawlingInfoService {
     @Autowired
     private ICrawlingInfoRepository ICrawlingInfoRepository;
 

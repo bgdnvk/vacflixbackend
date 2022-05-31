@@ -1,31 +1,14 @@
 package com.vacflix.backend.vacflixbackend.api;
 
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.YouTubeRequestInitializer;
-import com.google.api.services.youtube.model.PlaylistListResponse;
-import com.google.api.services.youtube.model.SearchListResponse;
-import com.google.api.services.youtube.model.SearchResult;
-import com.vacflix.backend.vacflixbackend.service.PageCrawler;
+import com.vacflix.backend.vacflixbackend.service.impl.ApiCrawlerServiceImpl;
 import com.vacflix.backend.vacflixbackend.service.YouTubeApiService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
 
 @RestController
 public class YouTubeController {
@@ -35,7 +18,7 @@ public class YouTubeController {
 
     //get the crawler bean
     @Autowired
-    PageCrawler pageCrawler;
+    ApiCrawlerServiceImpl pageCrawler;
 
     //TODO: save
     //use the playlist ID in the call to SAVE the playlist to the db
