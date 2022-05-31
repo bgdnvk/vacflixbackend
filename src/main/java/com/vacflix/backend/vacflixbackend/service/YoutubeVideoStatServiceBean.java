@@ -1,8 +1,7 @@
 package com.vacflix.backend.vacflixbackend.service;
 
-import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
-import com.vacflix.backend.vacflixbackend.repository.YoutubeVideoStatisticsRepository;
+import com.vacflix.backend.vacflixbackend.repository.IYoutubeVideoStatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +10,25 @@ import java.util.List;
 @Service
 public class YoutubeVideoStatServiceBean implements YoutubeVideoStatService{
     @Autowired
-    private YoutubeVideoStatisticsRepository youtubeVideoStatisticsRepository;
+    private IYoutubeVideoStatisticsRepository IYoutubeVideoStatisticsRepository;
 
     @Override
     public void save(YoutubeVideoStatistics videoStatistics) {
-        youtubeVideoStatisticsRepository.save(videoStatistics);
+        IYoutubeVideoStatisticsRepository.save(videoStatistics);
     }
 
     @Override
     public void update(YoutubeVideoStatistics videoStatistics) {
-        youtubeVideoStatisticsRepository.save(videoStatistics);
+        IYoutubeVideoStatisticsRepository.save(videoStatistics);
     }
 
     @Override
     public YoutubeVideoStatistics get(long id) {
-        return youtubeVideoStatisticsRepository.findById(id).get();
+        return IYoutubeVideoStatisticsRepository.findById(id).get();
     }
 
     @Override
     public List<YoutubeVideoStatistics> getAll() {
-        return youtubeVideoStatisticsRepository.findAll();
+        return IYoutubeVideoStatisticsRepository.findAll();
     }
 }
