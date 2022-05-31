@@ -1,7 +1,7 @@
 package com.vacflix.backend.vacflixbackend.api;
 
-import com.vacflix.backend.vacflixbackend.service.impl.ApiCrawlerServiceImpl;
-import com.vacflix.backend.vacflixbackend.service.YouTubeApiService;
+import com.vacflix.backend.vacflixbackend.services.crawler.impl.ApiCrawlerServiceImpl;
+import com.vacflix.backend.vacflixbackend.services.searcher.YouTubeApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +65,7 @@ public class YouTubeController {
 
     // TODO: refactor the crawler
     //first crawl test into db
+    //loads into crawling_info db
     @GetMapping(value = "crawl/{keyword}/{pageToCrawl}")
     public String crawlVideo(@PathVariable String keyword, @PathVariable long pageToCrawl) {
         return pageCrawler.crawlYoutubeVideoInfo(keyword,pageToCrawl);

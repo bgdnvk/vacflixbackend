@@ -1,8 +1,8 @@
-package com.vacflix.backend.vacflixbackend.service.impl;
+package com.vacflix.backend.vacflixbackend.services.access.impl;
 
 import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
 import com.vacflix.backend.vacflixbackend.repository.IYoutubeVideoStatisticsRepository;
-import com.vacflix.backend.vacflixbackend.service.IYoutubeVideoStatService;
+import com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoStatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

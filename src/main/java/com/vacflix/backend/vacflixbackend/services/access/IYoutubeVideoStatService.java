@@ -1,6 +1,5 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.services.access;
 
-import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
 
 import java.util.List;

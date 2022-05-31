@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.service.impl;
+package com.vacflix.backend.vacflixbackend.services.crawler.impl;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
@@ -14,7 +14,10 @@ import com.vacflix.backend.vacflixbackend.entity.CrawlingInfo;
 import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeChannelInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
-import com.vacflix.backend.vacflixbackend.service.*;
+import com.vacflix.backend.vacflixbackend.services.access.ICrawlingInfoService;
+import com.vacflix.backend.vacflixbackend.services.access.IYoutubeChannelService;
+import com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoStatService;
+import com.vacflix.backend.vacflixbackend.services.crawler.IApiCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Async;
@@ -43,7 +46,7 @@ public class ApiCrawlerServiceImpl implements IApiCrawler {
     private long count = 0;
 
     @Autowired
-    com.vacflix.backend.vacflixbackend.service.IYoutubeVideoInfoService IYoutubeVideoInfoService;
+    com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoInfoService IYoutubeVideoInfoService;
 
     @Autowired
     IYoutubeVideoStatService youtubeVideoStatService;
@@ -54,14 +57,15 @@ public class ApiCrawlerServiceImpl implements IApiCrawler {
     @Autowired
     ICrawlingInfoService crawlingInfoService;
 
-
+    //crawlVideo in Controller
     @Override
     @Async("threadPoolTaskExecutor")
     public String crawlYoutubeVideoInfo(String keyword,long pageToCrawl) {
         getYoutubeVideoList(keyword,pageToCrawl);
         return "loading..";
     }
-
+    //loads data into crawling_info
+    //crawlVideo in Controller
     @Transactional
     public List<Object> getYoutubeVideoList(String queryTerm, long pageToCrawl) {
 
