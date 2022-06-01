@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.services.crawler.impl;
+package com.vacflix.backend.vacflixbackend.services.crawlingInfo.impl;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
@@ -17,7 +17,7 @@ import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
 import com.vacflix.backend.vacflixbackend.services.access.ICrawlingInfoService;
 import com.vacflix.backend.vacflixbackend.services.access.IYoutubeChannelService;
 import com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoStatService;
-import com.vacflix.backend.vacflixbackend.services.crawler.IApiCrawler;
+import com.vacflix.backend.vacflixbackend.services.crawlingInfo.IApiCrawlingInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Async;
@@ -31,7 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ApiCrawlerServiceImpl implements IApiCrawler {
+public class ApiCrawlingInfoServiceImpl implements IApiCrawlingInfo {
     @Autowired
     private Environment env;
 

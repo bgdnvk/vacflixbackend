@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.services.searcher;
+package com.vacflix.backend.vacflixbackend.services.apiService;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
