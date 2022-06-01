@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.services.crawler.impl;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
@@ -14,6 +14,10 @@ import com.vacflix.backend.vacflixbackend.entity.CrawlingInfo;
 import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeChannelInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeVideoStatistics;
+import com.vacflix.backend.vacflixbackend.services.access.ICrawlingInfoService;
+import com.vacflix.backend.vacflixbackend.services.access.IYoutubeChannelService;
+import com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoStatService;
+import com.vacflix.backend.vacflixbackend.services.crawler.IApiCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Async;
@@ -27,7 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class PageCrawler implements ApiCrawler{
+public class ApiCrawlerServiceImpl implements IApiCrawler {
     @Autowired
     private Environment env;
 
@@ -42,25 +46,26 @@ public class PageCrawler implements ApiCrawler{
     private long count = 0;
 
     @Autowired
-    YoutubeVideoInfoService youtubeVideoInfoService;
+    com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoInfoService IYoutubeVideoInfoService;
 
     @Autowired
-    YoutubeVideoStatService youtubeVideoStatService;
+    IYoutubeVideoStatService youtubeVideoStatService;
 
     @Autowired
-    YoutubeChannelService youtubeChannelService;
+    IYoutubeChannelService youtubeChannelService;
 
     @Autowired
-    CrawlingInfoService crawlingInfoService;
+    ICrawlingInfoService crawlingInfoService;
 
-
+    //crawlVideo in Controller
     @Override
     @Async("threadPoolTaskExecutor")
     public String crawlYoutubeVideoInfo(String keyword,long pageToCrawl) {
         getYoutubeVideoList(keyword,pageToCrawl);
         return "loading..";
     }
-
+    //loads data into crawling_info
+    //crawlVideo in Controller
     @Transactional
     public List<Object> getYoutubeVideoList(String queryTerm, long pageToCrawl) {
 
@@ -133,7 +138,7 @@ public class PageCrawler implements ApiCrawler{
 
             System.out.println("vid num = " + count + " inserting video info " + singleVideo.getId().getVideoId());
             count++;
-            YouTubeVideoInfo youTubeVideoInfo = youtubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
+            YouTubeVideoInfo youTubeVideoInfo = IYoutubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
 
             if (youTubeVideoInfo == null) {
                 youTubeVideoInfo = new YouTubeVideoInfo();
@@ -154,7 +159,7 @@ public class PageCrawler implements ApiCrawler{
                     youTubeVideoInfo.setVideoStatistics(getVideosStatistics(rId.getVideoId()));
                 }
 
-                youtubeVideoInfoService.save(youTubeVideoInfo);
+                IYoutubeVideoInfoService.save(youTubeVideoInfo);
             } else {
                 System.out.println("dupe ");
             }

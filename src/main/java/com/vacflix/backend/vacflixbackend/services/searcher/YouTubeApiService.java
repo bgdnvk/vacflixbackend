@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.services.searcher;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
@@ -7,8 +7,10 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
+import com.vacflix.backend.vacflixbackend.auth.ApiAuth;
 import com.vacflix.backend.vacflixbackend.entity.YouTubeVideoInfo;
 import com.vacflix.backend.vacflixbackend.entity.YoutubeChannelInfo;
+import com.vacflix.backend.vacflixbackend.services.access.IYoutubeChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -53,10 +55,10 @@ public class YouTubeApiService {
 
     //BEANS/services
     @Autowired
-    YoutubeVideoInfoService youtubeVideoInfoService;
+    com.vacflix.backend.vacflixbackend.services.access.IYoutubeVideoInfoService IYoutubeVideoInfoService;
 
     @Autowired
-    YoutubeChannelService youtubeChannelService;
+    IYoutubeChannelService youtubeChannelService;
 
 
     //assign the json response and return it here
@@ -142,7 +144,7 @@ public class YouTubeApiService {
         return stringResponse;
     }
 
-
+    //get a single video from passing the ID through a query
     public String getVideo(String id){
         try{
             ApiAuth service = new ApiAuth(env);
@@ -167,6 +169,8 @@ public class YouTubeApiService {
     }
 
     //TODO: make proper exceptions
+    //return a string with the search result
+    //inside the items array you have all the videos
     public String getVideosFromSearch(String query) throws IOException {
 
         ApiAuth service = new ApiAuth(env);
@@ -188,7 +192,7 @@ public class YouTubeApiService {
     private void saveVideo(SearchResult searchResult) throws IOException {
 
         SearchResult singleVideo = searchResult;
-        YouTubeVideoInfo youTubeVideoInfo = youtubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
+        YouTubeVideoInfo youTubeVideoInfo = IYoutubeVideoInfoService.getByVideoId(singleVideo.getId().getVideoId());
 
         if (youTubeVideoInfo == null) {
             youTubeVideoInfo = new YouTubeVideoInfo();
@@ -209,7 +213,7 @@ public class YouTubeApiService {
 //                youTubeVideoInfo.setVideoStatistics(getVideosStatistics(rId.getVideoId()));
             }
 
-            youtubeVideoInfoService.save(youTubeVideoInfo);
+            IYoutubeVideoInfoService.save(youTubeVideoInfo);
         } else {
             System.out.println("dupe");
         }

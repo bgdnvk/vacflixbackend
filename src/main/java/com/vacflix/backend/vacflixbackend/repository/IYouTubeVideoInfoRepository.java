@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface YouTubeVideoInfoRepository extends JpaRepository<YouTubeVideoInfo, Long> {
+public interface IYouTubeVideoInfoRepository extends JpaRepository<YouTubeVideoInfo, Long> {
     YouTubeVideoInfo findByVideoId(String videoId);
 }

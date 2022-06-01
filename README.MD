@@ -1,3 +1,10 @@
+## dev update
+`services/access` contains interactions with the db
+
+`services/crawler` everything that you search AND save to the db (commands)
+
+`services/searcher` proxy to youtube through the api
+
 ## VacFlixBackend
 Crawl YouTube's channel playlists and playlist videos to store them in our db.  
 Then interact with the data through a RESTful API.

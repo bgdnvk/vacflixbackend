@@ -1,22 +1,16 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.auth;
 
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.JsonGenerator;
-import com.google.api.client.json.JsonParser;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeRequestInitializer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 import java.io.*;
-import java.nio.charset.Charset;
 
 public class ApiAuth {
 
@@ -69,7 +63,8 @@ public class ApiAuth {
     public ApiAuth(Environment env) {
         this.env = env;
     }
-
+    //get the instance to connect
+    //TODO: should be a singleton?
     public YouTube getYoutube(){
             return new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {

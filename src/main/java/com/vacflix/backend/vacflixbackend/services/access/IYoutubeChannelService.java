@@ -1,10 +1,10 @@
-package com.vacflix.backend.vacflixbackend.service;
+package com.vacflix.backend.vacflixbackend.services.access;
 
 import com.vacflix.backend.vacflixbackend.entity.YoutubeChannelInfo;
 
 import java.util.List;
 
-public interface YoutubeChannelService {
+public interface IYoutubeChannelService {
     void save(YoutubeChannelInfo channelInfo);
     void update(YoutubeChannelInfo channelInfo);
     YoutubeChannelInfo get(long id);
