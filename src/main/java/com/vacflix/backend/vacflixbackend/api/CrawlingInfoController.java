@@ -13,6 +13,8 @@ public class CrawlingInfoController {
     @Autowired
     ApiCrawlingInfoServiceImpl crawlingInfoService;
 
+    //example of a call:
+    //http://localhost:8081/ci/university/2
     //loads data info into crawling_info db
     @GetMapping(value = "ci/{keyword}/{page}")
     public String crawlingInfo(@PathVariable String keyword,

@@ -53,11 +53,5 @@ public class YouTubeController {
         return youTubeApiService.getVideo(id);
     }
 
-    //search query
-    //TODO: handle exceptions better
-    @GetMapping(path = "/search/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getSearchQuery(@PathVariable String query) throws IOException {
-        return youTubeApiService.getVideosFromSearch(query);
-    }
 
 }
