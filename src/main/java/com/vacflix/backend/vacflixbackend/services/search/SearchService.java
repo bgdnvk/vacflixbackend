@@ -17,6 +17,7 @@ public class SearchService {
     @Autowired
     private Environment env;
 
+    //TODO: make a JSON?
     public String getVideosFromQuery(String query) throws IOException {
         ApiAuth auth = new ApiAuth(env);
         YouTube youTube = auth.getYoutube();
@@ -28,6 +29,7 @@ public class SearchService {
                 .setQ(query)
                 .execute();
         //console log
+        System.out.println("from Search Service ---");
         System.out.println(response.toString());
         //TODO: send back a JSON?
         return response.toString();
