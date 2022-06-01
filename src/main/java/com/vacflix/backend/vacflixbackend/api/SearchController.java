@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+//Controller acts as a proxy to YouTube
+//every search/ endpoint calls the YouTube's API and gets the data back
 @RestController
 public class SearchController {
 
