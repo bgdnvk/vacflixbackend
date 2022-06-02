@@ -23,8 +23,11 @@ public class SearchService {
         YouTube youTube = auth.getYoutube();
 
         // Define and execute the API request
+        //list req?
         YouTube.Search.List request = youTube.search()
                 .list(Collections.singletonList("snippet"));
+        //https://developers.google.com/resources/api-libraries/documentation/youtube/v3/java/latest/com/google/api/services/youtube/model/SearchListResponse.html
+        //https://googleapis.github.io/google-http-java-client/json.html
         SearchListResponse response = request.setMaxResults(25L)
                 .setQ(query)
                 .execute();
