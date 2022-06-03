@@ -17,10 +17,16 @@ public class SearchService {
     @Autowired
     private Environment env;
 
+    //Youtube type because it's youtube builder from ApiAuth
+    public YouTube getAuth() {
+        ApiAuth auth = new ApiAuth(env);
+        return auth.getAuth();
+    }
+
     //TODO: make a JSON?
     public String getVideosFromQuery(String query) throws IOException {
         ApiAuth auth = new ApiAuth(env);
-        YouTube youTube = auth.getYoutube();
+        YouTube youTube = auth.getAuth();
 
         // Define and execute the API request
         //list req?
@@ -36,5 +42,16 @@ public class SearchService {
         System.out.println(response.toString());
         //TODO: send back a JSON?
         return response.toString();
+    }
+
+    public void getTestQuery(String query) throws IOException {
+        //TODO: FIX
+        ApiAuth auth = new ApiAuth(env);
+        YouTube youtubeService = auth.getAuth();
+        //I love outdated docs
+        YouTube.Search.List request = youtubeService.search()
+                .list(Collections.singletonList("snippet"));
+        SearchListResponse response = request.execute();
+        System.out.println(response);
     }
 }

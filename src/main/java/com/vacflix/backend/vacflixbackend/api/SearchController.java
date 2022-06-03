@@ -26,4 +26,12 @@ public class SearchController {
     public String getVideosForQuery(@PathVariable String query) throws IOException {
         return searchService.getVideosFromQuery(query);
     }
+
+    //TESTING SearchService.getTestQuery method
+    //official API docs json example
+    @GetMapping(path = "/search/test/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void getVideosSearchTest(@PathVariable String query) throws IOException {
+        searchService.getTestQuery(query);
+    }
+
 }
