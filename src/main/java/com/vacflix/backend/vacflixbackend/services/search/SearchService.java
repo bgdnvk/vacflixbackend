@@ -53,5 +53,7 @@ public class SearchService {
                 .list(Collections.singletonList("snippet"));
         SearchListResponse response = request.execute();
         System.out.println(response);
+        //type is class com.google.api.services.youtube.model.SearchListResponse
+        System.out.println("type is "+response.getClass());
     }
 }
