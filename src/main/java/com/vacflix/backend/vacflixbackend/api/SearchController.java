@@ -1,5 +1,6 @@
 package com.vacflix.backend.vacflixbackend.api;
 
+import com.google.api.services.youtube.model.SearchListResponse;
 import com.vacflix.backend.vacflixbackend.services.apiService.YouTubeApiService;
 import com.vacflix.backend.vacflixbackend.services.search.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class SearchController {
     //TESTING SearchService.getTestQuery method
     //official API docs json example
     @GetMapping(path = "/search/test/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void getVideosSearchTest(@PathVariable String query) throws IOException {
-        searchService.getTestQuery(query);
+    public SearchListResponse getVideosSearchTest(@PathVariable String query) throws IOException {
+        return searchService.getTestQuery(query);
     }
 
 }
