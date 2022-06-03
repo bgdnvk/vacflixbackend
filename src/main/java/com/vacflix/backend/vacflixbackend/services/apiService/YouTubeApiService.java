@@ -68,7 +68,7 @@ public class YouTubeApiService {
     public String getYoutubePlaylist(String id){
         try {
             ApiAuth service = new ApiAuth(env);
-            YouTube youtube = service.getYoutube();
+            YouTube youtube = service.getAuth();
 
             //methods to get the playlists
             YouTube.Playlists.List request = youtube.playlists()
@@ -104,7 +104,7 @@ public class YouTubeApiService {
         //get the authorization through the api
         try{
             ApiAuth service = new ApiAuth(env);
-            YouTube youtube = service.getYoutube();
+            YouTube youtube = service.getAuth();
 
             YouTube.PlaylistItems.List request = youtube.playlistItems()
                     .list(Collections.singletonList("contentDetails"));
@@ -148,7 +148,7 @@ public class YouTubeApiService {
     public String getVideo(String id){
         try{
             ApiAuth service = new ApiAuth(env);
-            YouTube youtube = service.getYoutube();
+            YouTube youtube = service.getAuth();
 
             YouTube.Videos.List request = youtube.videos()
                     .list(Collections.singletonList("snippet,contentDetails,statistics"));
@@ -174,7 +174,7 @@ public class YouTubeApiService {
     public String getVideosFromSearch(String query) throws IOException {
 
         ApiAuth service = new ApiAuth(env);
-        YouTube youtube = service.getYoutube();
+        YouTube youtube = service.getAuth();
 
         // Define and execute the API request
         YouTube.Search.List request = youtube.search()
@@ -224,7 +224,7 @@ public class YouTubeApiService {
     private YoutubeChannelInfo getChannelDetailsById(String channelId) throws IOException {
         //TODO: refactor service
         ApiAuth service = new ApiAuth(env);
-        YouTube youtube = service.getYoutube();
+        YouTube youtube = service.getAuth();
 
         YouTube.Channels.List channels = youtube.channels().list(Collections.singletonList("snippet, statistics"));
 

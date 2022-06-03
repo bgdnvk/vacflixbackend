@@ -65,7 +65,7 @@ public class ApiAuth {
     }
     //get the instance to connect
     //TODO: should be a singleton?
-    public YouTube getYoutube(){
+    public YouTube getAuth(){
             return new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }

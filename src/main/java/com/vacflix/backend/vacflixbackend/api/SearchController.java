@@ -1,5 +1,6 @@
 package com.vacflix.backend.vacflixbackend.api;
 
+import com.google.api.services.youtube.model.SearchListResponse;
 import com.vacflix.backend.vacflixbackend.services.apiService.YouTubeApiService;
 import com.vacflix.backend.vacflixbackend.services.search.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+//Controller acts as a proxy to YouTube
+//every search/ endpoint calls the YouTube's API and gets the data back
 @RestController
 public class SearchController {
 
@@ -24,4 +27,12 @@ public class SearchController {
     public String getVideosForQuery(@PathVariable String query) throws IOException {
         return searchService.getVideosFromQuery(query);
     }
+
+    //TESTING SearchService.getTestQuery method
+    //official API docs json example
+    @GetMapping(path = "/search/test/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public SearchListResponse getVideosSearchTest(@PathVariable String query) throws IOException {
+        return searchService.getTestQuery(query);
+    }
+
 }
