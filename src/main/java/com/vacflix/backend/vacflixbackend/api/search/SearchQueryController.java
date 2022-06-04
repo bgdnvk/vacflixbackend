@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.api;
+package com.vacflix.backend.vacflixbackend.api.search;
 
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.vacflix.backend.vacflixbackend.services.apiService.YouTubeApiService;

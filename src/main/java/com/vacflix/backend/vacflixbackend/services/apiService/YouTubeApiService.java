@@ -65,6 +65,7 @@ public class YouTubeApiService {
     String stringResponse;
 
     //build the youtube auth from the api key
+    //channel id
     public String getYoutubePlaylist(String id){
         try {
             ApiAuth service = new ApiAuth(env);
