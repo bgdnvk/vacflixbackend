@@ -47,11 +47,12 @@ public class YouTubeController {
         return youTubeApiService.getVideosFromPlaylist(id);
     }
 
+    //implemented in searchIdController
     //add single video id, mostly for testing purposes
-    @GetMapping(path = "/video/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getVideoById(@PathVariable String id){
-        return youTubeApiService.getVideo(id);
-    }
+//    @GetMapping(path = "/video/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public String getVideoById(@PathVariable String id){
+//        return youTubeApiService.getVideo(id);
+//    }
 
 
 }
