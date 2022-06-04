@@ -188,6 +188,7 @@ public class YouTubeApiService {
         return response.toString();
     }
 
+    //TODO: check the only useful stuff here ---------------
     //save your video to the db
     //TODO: only for lists, not single video. Need to fix
     private void saveVideo(SearchResult searchResult) throws IOException {
