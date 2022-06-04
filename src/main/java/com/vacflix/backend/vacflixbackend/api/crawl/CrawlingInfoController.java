@@ -1,4 +1,4 @@
-package com.vacflix.backend.vacflixbackend.api;
+package com.vacflix.backend.vacflixbackend.api.crawl;
 
 import com.vacflix.backend.vacflixbackend.services.crawlingInfo.impl.ApiCrawlingInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

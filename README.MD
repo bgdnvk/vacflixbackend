@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+TL;DR: refactoring EVERYTHING
 ## dev update
 `services/access` contains interactions with the db
 
